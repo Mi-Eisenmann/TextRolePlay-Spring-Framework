@@ -63,10 +63,10 @@ public class Treasure_Small implements TreasureInterface{
 		
 		// Determine whether we got healed or damaged
 		if(heal >= 0) {
-			message = "Great, you got healed by " + String.valueOf(AbsHeal) + " life points." +
+			message = "Great, you got healed by " + String.valueOf(AbsHeal) + " life points." + "\n" +
 					  " Additionally your mana got increased by " + String.valueOf(mana) + ".";
 		} else {
-			message = "Oh no, you got poisoned and lost " + String.valueOf(AbsHeal) + " life points." +
+			message = "Oh no, you got poisoned and lost " + String.valueOf(AbsHeal) + " life points." + "\n" +
 					  " Additionally your mana got increased by " + String.valueOf(mana) + ".";
 		}
 		

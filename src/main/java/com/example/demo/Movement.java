@@ -2,9 +2,11 @@ package com.example.demo;
 
 import java.util.Scanner;
 
+import org.springframework.context.ApplicationContext;
+
 public class Movement {
 
-	public static void movement(Scanner user_input) {
+	public static void movement(Scanner user_input, ApplicationContext ctx) {
 			
 			int[] playerPosition = Dungeon.findPlayer();
 			
@@ -23,9 +25,9 @@ public class Movement {
 			default: direction = "Nowhere";
 			}
 			
-			System.out.println("You moved " + direction);
+			System.out.println("\n" + "You moved " + direction);
 			
-			Dungeon.movePlayer(input);
+			Dungeon.movePlayer(input, ctx);
 	}
 
 }
