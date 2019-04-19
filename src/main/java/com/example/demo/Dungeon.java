@@ -3,6 +3,7 @@ package com.example.demo;
 import org.springframework.stereotype.Component;
 import org.springframework.context.ApplicationContext;
 
+import com.example.demo.Gear.GearController;
 import com.example.demo.Monster.MonsterController;
 import com.example.demo.Treasure.TreasureController;
 
@@ -100,8 +101,10 @@ public class Dungeon {
 		switch (obj) {
 		case 2:
 		TreasureController treasureCont = (TreasureController) ctx.getBean("treasureController");
-		System.out.println(treasureCont.foundMessage());
-		System.out.println(treasureCont.openingMessage());
+		GearController gearCont = (GearController) ctx.getBean("gearController");
+		System.out.println(gearCont.foundMessage());
+		/*System.out.println(treasureCont.foundMessage());
+		System.out.println(treasureCont.openingMessage());*/
 		
 		// Update the Hero's stats
 		Hero.updateHeroLife(treasureCont.getHealing());

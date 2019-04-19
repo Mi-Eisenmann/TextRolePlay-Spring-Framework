@@ -1,6 +1,5 @@
 package com.example.demo.Monster;
 
-
 public interface MonsterInterface{
 	
 	public String monsterFindMessage();
