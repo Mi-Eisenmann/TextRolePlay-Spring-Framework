@@ -3,6 +3,7 @@ package com.example.demo;
 import org.springframework.stereotype.Component;
 import org.springframework.context.ApplicationContext;
 
+import com.example.demo.Gear.Gear;
 import com.example.demo.Gear.GearController;
 import com.example.demo.Monster.MonsterController;
 import com.example.demo.Treasure.TreasureController;
@@ -12,9 +13,9 @@ public class Dungeon {
 	
 	public static int[][] field = {{-1,-1,-1,-1,-1,-1,-1},
 								   {-1,0,0,2,0,0,-1},
-								   {-1,0,0,0,0,0,-1},
+								   {-1,0,0,0,0,3,-1},
 								   {-1,0,0,1,0,3,-1},
-								   {-1,0,0,0,0,0,-1},
+								   {-1,0,0,0,0,3,-1},
 								   {-1,0,0,0,0,0,-1},
 								   {-1,-1,-1,-1,-1,-1,-1}};;
 	
@@ -96,12 +97,15 @@ public class Dungeon {
 		printField();
 	}
 	
-	
+	// Interaction between the Hero and Objects
 	public static void contact(int obj, ApplicationContext ctx) {
+		
+		TreasureController treasureCont = (TreasureController) ctx.getBean("treasureController");
+		MonsterController monsterCont = (MonsterController) ctx.getBean("monsterController");
+		GearController gearCont = (GearController) ctx.getBean("gearController");
+		
 		switch (obj) {
 		case 2:
-		TreasureController treasureCont = (TreasureController) ctx.getBean("treasureController");
-		GearController gearCont = (GearController) ctx.getBean("gearController");
 		System.out.println(gearCont.foundMessage());
 		/*System.out.println(treasureCont.foundMessage());
 		System.out.println(treasureCont.openingMessage());*/
@@ -111,12 +115,64 @@ public class Dungeon {
 		Hero.updateHeroMana(treasureCont.getMana());
 		break;
 		case 3: 
-		MonsterController monsterCont = (MonsterController) ctx.getBean("monsterController");
 		System.out.println(monsterCont.monsterFindMessage());
-		System.out.println("A fight starts...");
+		fight(monsterCont);
 		break;
 		default: break;
 		}
+	}
+	
+	// Fights between the Hero and dungeon monster
+	private static void fight(MonsterController monsterCont) {
+		
+		// Initializing stats
+		int damageHero = Hero.damage;
+		int lifeHero = Hero.life;
+		int damageMonster = monsterCont.giveStats()[1];
+		int lifeMonster = monsterCont.giveStats()[0];
+		int Round = 1;
+		
+		// Check for the Heroes gear
+		int weaponDamage = 0;
+		int armor = 0;
+		if(Hero.getGear() != null) {
+			Gear heroGear = Hero.getGear();
+			weaponDamage = heroGear.getStats()[1];
+			armor = heroGear.getStats()[0];
+		}
+		damageHero += weaponDamage;
+		
+		// As long as both are alive, they are fighting
+		while(lifeHero > 0 && lifeMonster > 0) {
+			System.out.println("Round: " + String.valueOf(Round) + "\n");
+			System.out.println("You have " + lifeHero + " lifepoints left." + "\n");
+			System.out.println("Your opponent has " + lifeMonster + " lifepoints left." + "\n" + "\n");
+			
+			System.out.println("You deal " + damageHero + " damage." + "\n");
+			lifeMonster -= damageHero;
+			System.out.println("The monster deals " + damageMonster + " damage." + "\n" + "\n");
+			lifeHero -= damageMonster - armor; // Damage reduced by the heroes armor
+			
+			System.out.println("You have " + lifeHero + " lifepoints left." + "\n");
+			System.out.println("Your opponent has " + lifeMonster + " lifepoints left." + "\n" + "\n");
+			
+			Round += 1;
+		}
+		
+		// Who won?
+		if (lifeHero <= 0) {
+			System.out.println("You died." + "\n");
+		} else if (lifeMonster <= 0) {
+			System.out.println("You won, you lucky bastard!" + "\n");
+			
+			// Drop a weapon or armor for the hero
+			Gear newGear = new Gear();
+			Hero.setGear(newGear); // Replace the old one
+		}
+		
+		// Update the hero's life after the fight
+		Hero.life = lifeHero;
+		
 	}
 	
 	

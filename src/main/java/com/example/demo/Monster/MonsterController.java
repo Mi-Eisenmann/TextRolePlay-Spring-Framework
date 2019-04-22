@@ -13,11 +13,15 @@ public class MonsterController {
 		this.monsterInterface = monsterInterface;
 	}
 	
-	public void fight() {
+	/*public void fight() {
 		monsterInterface.fight();
-	}
+	}*/
 	
 	public String monsterFindMessage() {
 		return monsterInterface.monsterFindMessage();
+	}
+	
+	public int[] giveStats() {
+		return monsterInterface.giveStats();
 	}
 }

@@ -12,7 +12,7 @@ public class Movement {
 			
 			System.out.println("Your current position is: x = " + String.valueOf(playerPosition[0]) + " ; y = " + String.valueOf(playerPosition[1]) + " .");
 	
-			System.out.println("Move to");
+			System.out.println("Move to (w: North, a: West, s: South, d: East)");
 			String input;
 			input = user_input.next( );
 			
@@ -25,7 +25,7 @@ public class Movement {
 			default: direction = "Nowhere";
 			}
 			
-			System.out.println("\n" + "You moved " + direction);
+			System.out.println("You moved " + direction);
 			
 			Dungeon.movePlayer(input, ctx);
 	}

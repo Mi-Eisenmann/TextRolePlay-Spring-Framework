@@ -4,6 +4,8 @@ public interface MonsterInterface{
 	
 	public String monsterFindMessage();
 	
-	public void fight();
+	//public void fight();
+	
+	public int[] giveStats();
 	
 }

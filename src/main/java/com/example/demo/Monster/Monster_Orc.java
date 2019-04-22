@@ -16,10 +16,10 @@ public class Monster_Orc implements MonsterInterface{
 		setStats();
 	}
 
-	@Override
+	/*@Override
 	public void fight() {
-		System.out.println(monsterFindMessage());
-	}
+		System.out.println("Monster Fight");
+	}*/
 	
 	public String monsterFindMessage() {
 		return "You found a monster with " + String.valueOf(life) + " life points and " +
@@ -32,6 +32,13 @@ public class Monster_Orc implements MonsterInterface{
 		Random rand = new Random();
 		this.life = rand.nextInt(21) + 60; // random between 60 and 80
 		this.damage = rand.nextInt(11) + 5; // random between 5 and 15
+	}
+	
+	@Override
+	public int[] giveStats() {
+		//setStats();
+		int[] stats = {this.life, this.damage};
+		return stats;
 	}
 	
 	

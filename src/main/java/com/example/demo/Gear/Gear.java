@@ -42,7 +42,7 @@ public class Gear implements GearInterface{
 	@Override
 	public int[] getStats() {
 
-		int[] stats = {0,0};
+		int[] stats = {0,0}; // The first stat is the armor, the second is the weapon damage
 		
 		if (this.armorOrWeapon == 0) {
 			stats[0] = statValue;
