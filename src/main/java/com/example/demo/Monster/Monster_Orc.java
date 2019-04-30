@@ -6,7 +6,8 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 @Component
-@Profile({"Orc","default"})
+//@Profile({"Orc","default"})
+@Profile("Orc")
 public class Monster_Orc implements MonsterInterface{
 	
 	private int life;
@@ -34,7 +35,7 @@ public class Monster_Orc implements MonsterInterface{
 		this.damage = rand.nextInt(11) + 5; // random between 5 and 15
 	}
 	
-	@Override
+	//@Override
 	public int[] giveStats() {
 		//setStats();
 		int[] stats = {this.life, this.damage};

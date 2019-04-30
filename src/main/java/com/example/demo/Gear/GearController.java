@@ -8,11 +8,16 @@ public class GearController {
 	
 	private GearInterface gearInterface;
 	
-	@Autowired
+	public GearController() {
+		
+	}
+	
+	//@Autowired
 	public void setGear(GearInterface gearInterface) {
 		this.gearInterface= gearInterface;
 	}
 	
+	//@Autowired
 	public String foundMessage() {
 		return gearInterface.foundMessage();
 	}

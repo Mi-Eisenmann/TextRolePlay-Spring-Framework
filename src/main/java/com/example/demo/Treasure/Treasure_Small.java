@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
 @Component
-@Profile({"PotSmall","default"})
+@Profile("Small")
 public class Treasure_Small implements TreasureInterface{
 	
 	private int healing;

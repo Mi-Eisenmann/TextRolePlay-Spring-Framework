@@ -8,6 +8,10 @@ public class MonsterController {
 	
 	private MonsterInterface monsterInterface;
 	
+	public MonsterController() {
+		
+	}
+	
 	@Autowired
 	public void setMonster(MonsterInterface monsterInterface) {
 		this.monsterInterface = monsterInterface;

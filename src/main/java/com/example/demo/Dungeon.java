@@ -2,13 +2,16 @@ package com.example.demo;
 
 import org.springframework.stereotype.Component;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Scope;
 
 import com.example.demo.Gear.Gear;
 import com.example.demo.Gear.GearController;
 import com.example.demo.Monster.MonsterController;
+import com.example.demo.Treasure.Treasure_Small;
 import com.example.demo.Treasure.TreasureController;
 
 @Component
+@Scope("singleton")
 public class Dungeon {
 	
 	public static int[][] field = {{-1,-1,-1,-1,-1,-1,-1},
@@ -106,24 +109,29 @@ public class Dungeon {
 		
 		switch (obj) {
 		case 2:
-		System.out.println(gearCont.foundMessage());
+		//System.out.println(gearCont.foundMessage());
 		/*System.out.println(treasureCont.foundMessage());
 		System.out.println(treasureCont.openingMessage());*/
 		
 		// Update the Hero's stats
-		Hero.updateHeroLife(treasureCont.getHealing());
-		Hero.updateHeroMana(treasureCont.getMana());
+		Treasure_Small treas = new Treasure_Small();
+		//Hero.updateHeroLife(treasureCont.getHealing());
+		//Hero.updateHeroMana(treasureCont.getMana());
+		System.out.println(treas.foundMessage());
+		System.out.println(treas.openingMessage());
+		Hero.updateHeroLife(treas.getHealing());
+		Hero.updateHeroLife(treas.getMana());
 		break;
 		case 3: 
 		System.out.println(monsterCont.monsterFindMessage());
-		fight(monsterCont);
+		fight(monsterCont,gearCont);
 		break;
 		default: break;
 		}
 	}
 	
 	// Fights between the Hero and dungeon monster
-	private static void fight(MonsterController monsterCont) {
+	private static void fight(MonsterController monsterCont, GearController gearCont) {
 		
 		// Initializing stats
 		int damageHero = Hero.damage;

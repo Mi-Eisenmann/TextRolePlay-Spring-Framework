@@ -5,6 +5,7 @@ import java.util.Scanner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.example.demo.Monster.MonsterController;
 import com.example.demo.Treasure.TreasureController;
@@ -13,7 +14,9 @@ import com.example.demo.Treasure.TreasureController;
 public class TextRolePlayingGameApplication {
 
 	public static void main(String[] args) {
-		ApplicationContext ctx = SpringApplication.run(TextRolePlayingGameApplication.class, args);
+		//ApplicationContext ctx = SpringApplication.run(TextRolePlayingGameApplication.class, args);
+		ApplicationContext ctx = 
+		         new AnnotationConfigApplicationContext(RolePlayConfig.class);
 		
 		new Dungeon();
 		new Hero();

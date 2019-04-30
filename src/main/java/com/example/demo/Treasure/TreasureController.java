@@ -8,8 +8,12 @@ public class TreasureController {
 	
 	private TreasureInterface treasureInterface;
 	
+	public TreasureController() {
+		
+	}
+	
 	@Autowired
-	public void setMonster(TreasureInterface treasureInterface) {
+	public void setTreasure(TreasureInterface treasureInterface) {
 		this.treasureInterface = treasureInterface;
 	}
 	

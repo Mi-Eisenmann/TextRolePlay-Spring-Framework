@@ -17,7 +17,7 @@ public class Gear implements GearInterface{
 		armorOrWeapon();
 	}
 
-	@Override
+	//@Override
 	public String foundMessage() {
 		String message;
 		if (armorOrWeapon == 0) {
@@ -39,7 +39,7 @@ public class Gear implements GearInterface{
 		this.armorOrWeapon = chose;
 	}
 
-	@Override
+	//@Override
 	public int[] getStats() {
 
 		int[] stats = {0,0}; // The first stat is the armor, the second is the weapon damage
